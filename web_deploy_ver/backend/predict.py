@@ -4,7 +4,6 @@ import joblib
 import pandas as pd
 import json
 
-
 temp=str(sys.argv[0])
 brand=str(sys.argv[1])
 size=str(sys.argv[2])
@@ -16,7 +15,9 @@ material=str(sys.argv[6])
 data=list(sys.argv[1:])
 
 # MODEL
-regtree=os.getcwd()+"/web/backend/decision_tree_model.pkl"
+regtree="\decision_tree_model.pkl"
+current_directory = os.getcwd()
+regtree=current_directory+regtree
 model=joblib.load(regtree)
 
 # feature list
