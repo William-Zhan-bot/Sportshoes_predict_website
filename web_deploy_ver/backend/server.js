@@ -11,7 +11,7 @@ app.listen(port, () => {
 });
 
 // middleware
-app.set("views", "D:/codes/prjs/shoes/web/frontend/views");
+app.set("views", "D:/codes/prjs/shoes/web/frontend/views/");
 app.set("view engine", "ejs");
 // 靜態檔案
 const public = path.join(__dirname, "..", "frontend", "public");
