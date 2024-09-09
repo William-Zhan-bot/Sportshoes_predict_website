@@ -15,7 +15,7 @@ material=str(sys.argv[6])
 data=list(sys.argv[1:])
 
 # MODEL
-regtree="decision_tree_model.pkl"
+regtree="/decision_tree_model.pkl"
 current_directory = os.getcwd()
 regtree=current_directory+regtree
 model=joblib.load(regtree)
