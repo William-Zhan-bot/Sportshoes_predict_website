@@ -1,0 +1,2 @@
+# Sportshoes_predict_website
+Node.js建立伺服器，處理前端GET request，調用Python機器學習模型對售價進行預測
