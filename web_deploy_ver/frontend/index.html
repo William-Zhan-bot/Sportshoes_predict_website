@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sport shoes Price Predict</title>
+    <link rel="icon" href="/images/shoes.ico" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      p {
+        font-size: 14px;
+      }
+      .content {
+        display: flex;
+        border: 1px solid black;
+        overflow-x: auto;
+        height: 80vh;
+        margin: 0px 20px;
+        justify-content: center;
+
+        background-image: url("/images/bg1.png"); /* 设置背景图像 */
+        background-repeat: repeat; /* 使背景图像重复填满 */
+        background-size: 500px; /* 默认尺寸，不调整图像大小 */
+        background-position: top left; /* 图像的位置 */
+      }
+      label {
+        color: rgb(238, 238, 238);
+      }
+      .query {
+        display: flex;
+        flex-wrap: wrap; /* 确保子元素在同一行内排列 */
+        overflow-x: auto; /* 如果子元素超出容器宽度，显示水平滚动条 */
+        justify-content: center;
+      }
+      .dropdown {
+        padding: 2px 5px;
+      }
+      .submit-bt {
+        display: flex;
+        justify-content: center;
+      }
+      footer {
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(40, 33, 87);
+        margin-top: 10px;
+      }
+      .author {
+        font-size: 15px;
+        margin: 1px 0px;
+        background-color: rgb(40, 33, 87);
+        color: aliceblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 標題 -->
+    <div class="alert alert-info" role="alert">
+      <h4>AI球鞋售價預測</h4>
+      <h6>Sport Shoes prices forecast by AI</h6>
+      <div>
+        <p>
+          以2020~2023運動品牌球鞋各項基本資料與售價，進行ai模型訓練，預測最可能的售價。
+        </p>
+        <p>
+          Model is trained by basic information and selling prices of sports
+          brand sport shoes from 2020 to 2023, to predict the closest possible
+          selling price.
+        </p>
+      </div>
+    </div>
+
+    <!-- 查詢內容 -->
+    <form action="/result" method="get">
+      <div class="content">
+        <div class="query" style="padding: 0px 5px">
+          <!-- 品牌 -->
+          <div id="brand" class="dropdown">
+            <label for="brand">Brand</label>
+            <select class="form-select" name="brand" aria-label="Select brand">
+              <option value="Nike">Nike</option>
+              <option value="Adidas">Adidas</option>
+              <option value="Reebok">Reebok</option>
+              <option value="Converse">Converse</option>
+              <option value="Puma">Puma</option>
+              <option value="Vans">Vans</option>
+              <option value="New Balance">New Balance</option>
+              <option value="Asics">Asics</option>
+              <option value="Fila">Fila</option>
+              <option value="Skechers">Skechers</option>
+            </select>
+          </div>
+
+          <!-- 尺寸 -->
+          <div id="size" class="dropdown">
+            <label for="size">Size</label>
+            <select class="form-select" name="size" aria-label="Select brand">
+              <option value="US 6">US 6</option>
+              <option value="US 6.5">US 6.5</option>
+              <option value="US 7">US 7</option>
+              <option value="US 7.5">US 7.5</option>
+              <option value="US 8">US 8</option>
+              <option value="US 8.5">US 8.5</option>
+              <option value="US 9">US 9</option>
+              <option value="US 9.5">US 9.5</option>
+              <option value="US 10">US 10</option>
+              <option value="US 10.5">US 10.5</option>
+              <option value="US 11">US 11</option>
+              <option value="US 11.5">US 11.5</option>
+              <option value="US 12">US 12</option>
+            </select>
+          </div>
+
+          <!-- 性別 -->
+          <div id="gender" class="dropdown">
+            <label for="gender">Gender</label>
+            <select
+              class="form-select"
+              name="gender"
+              aria-label="Select gender"
+            >
+              <option value="Men">Men</option>
+              <option value="Women">Women</option>
+            </select>
+          </div>
+
+          <!-- 類型 -->
+          <div id="type" class="dropdown">
+            <label for="brand">Type</label>
+            <select class="form-select" name="type" aria-label="Select type">
+              <option value="Basketball">Basketball</option>
+              <option value="Running">Running</option>
+              <option value="Casual">Casual</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Skate">Skate</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Walking">Walking</option>
+              <option value="Cross-training">Cross-training</option>
+              <option value="Slides">Slides</option>
+              <option value="Crossfit">Crossfit</option>
+              <option value="Training">Training</option>
+              <option value="Trail">Trail</option>
+              <option value="Trail Running">Trail Running</option>
+              <option value="Weightlifting">Weightlifting</option>
+              <option value="CrossFit">CrossFit</option>
+              <option value="Hiking">Hiking</option>
+              <option value="Racing">Racing</option>
+              <option value="Retro">Retro</option>
+            </select>
+          </div>
+
+          <!-- 顏色 -->
+          <div id="color" class="dropdown">
+            <label for="color">Color</label>
+            <select class="form-select" name="color" aria-label="Select color">
+              <option value="Red/Black">Red/Black</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Navy">Navy</option>
+              <option value="Pink">Pink</option>
+              <option value="Black/White">Black/White</option>
+              <option value="Grey">Grey</option>
+              <option value="Blue">Blue</option>
+              <option value="White/Green">White/Green</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Purple">Purple</option>
+              <option value="Black/Pink">Black/Pink</option>
+              <option value="Blue/Orange">Blue/Orange</option>
+              <option value="Black/Red">Black/Red</option>
+              <option value="Checkered">Checkered</option>
+              <option value="Black/Grey">Black/Grey</option>
+              <option value="White/Red">White/Red</option>
+              <option value="Beige">Beige</option>
+              <option value="Orange">Orange</option>
+              <option value="White/Navy">White/Navy</option>
+              <option value="White/Blue">White/Blue</option>
+              <option value="Red">Red</option>
+              <option value="Green">Green</option>
+              <option value="Red/White">Red/White</option>
+              <option value="Black/Yellow">Black/Yellow</option>
+              <option value="White/Pink">White/Pink</option>
+              <option value="Blue/White">Blue/White</option>
+              <option value="White/Grey">White/Grey</option>
+              <option value="Cream">Cream</option>
+              <option value="White/Navy/Red">White/Navy/Red</option>
+              <option value="Yellow/Black">Yellow/Black</option>
+              <option value="Navy/White">Navy/White</option>
+              <option value="Grey/Pink">Grey/Pink</option>
+              <option value="Grey/Green">Grey/Green</option>
+              <option value="White/Red/Navy">White/Red/Navy</option>
+              <option value="White/Black">White/Black</option>
+              <option value="Grey/Purple">Grey/Purple</option>
+              <option value="Black/Green">Black/Green</option>
+              <option value="Black/Blue">Black/Blue</option>
+              <option value="Pink/White">Pink/White</option>
+              <option value="Blue/Green">Blue/Green</option>
+              <option value="Zebra">Zebra</option>
+              <option value="Khaki">Khaki</option>
+              <option value="Checkerboard">Checkerboard</option>
+              <option value="Grey/Yellow">Grey/Yellow</option>
+              <option value="Ivory">Ivory</option>
+              <option value="Egret">Egret</option>
+              <option value="Grey/Orange">Grey/Orange</option>
+              <option value="Grey/Black">Grey/Black</option>
+              <option value="Green/Orange">Green/Orange</option>
+              <option value="Black/Gold">Black/Gold</option>
+              <option value="Black/White Checkerboard">
+                Black/White Checkerboard
+              </option>
+              <option value="Cream White">Cream White</option>
+              <option value="Green/White">Green/White</option>
+              <option value="Checkerboard Black/White">
+                Checkerboard Black/White
+              </option>
+              <option value="Blue/Black">Blue/Black</option>
+              <option value="Cloud White">Cloud White</option>
+              <option value="Grey/White">Grey/White</option>
+              <option value="Navy/Red">Navy/Red</option>
+              <option value="Multi-color">Multi-color</option>
+              <option value="Pink/Black">Pink/Black</option>
+              <option value="Sunflower">Sunflower</option>
+              <option value="Blue/Red">Blue/Red</option>
+              <option value="Silver/White">Silver/White</option>
+              <option value="Black/Gum">Black/Gum</option>
+              <option value="Egret/Black">Egret/Black</option>
+              <option value="True White">True White</option>
+              <option value="Blue/Pink">Blue/Pink</option>
+              <option value="Black/Gold/Red">Black/Gold/Red</option>
+              <option value="Natural">Natural</option>
+              <option value="Burgundy">Burgundy</option>
+              <option value="Charcoal">Charcoal</option>
+              <option value="Cinder">Cinder</option>
+              <option value="Blue/Yellow">Blue/Yellow</option>
+              <option value="White/Red/Blue">White/Red/Blue</option>
+              <option value="Silver">Silver</option>
+              <option value="White/Gold">White/Gold</option>
+              <option value="Brown">Brown</option>
+              <option value="Green/Black">Green/Black</option>
+              <option value="Clay Brown">Clay Brown</option>
+              <option value="Natural Ivory">Natural Ivory</option>
+              <option value="Collegiate Navy">Collegiate Navy</option>
+            </select>
+          </div>
+
+          <!-- 材質 -->
+          <div id="material" class="dropdown">
+            <label for="material">Material</label>
+            <select
+              class="form-select"
+              name="material"
+              aria-label="Select material"
+            >
+              <option value="Leather">Leather</option>
+              <option value="Primeknit">Primeknit</option>
+              <option value="Canvas">Canvas</option>
+              <option value="Mesh">Mesh</option>
+              <option value="Suede/Canvas">Suede/Canvas</option>
+              <option value="Suede/Mesh">Suede/Mesh</option>
+              <option value="Leather/Synthetic">Leather/Synthetic</option>
+              <option value="Suede">Suede</option>
+              <option value="Synthetic">Synthetic</option>
+              <option value="Mesh/Synthetic">Mesh/Synthetic</option>
+              <option value="Suede/Textile">Suede/Textile</option>
+              <option value="Knit">Knit</option>
+              <option value="Nylon">Nylon</option>
+              <option value="Flexweave">Flexweave</option>
+              <option value="Flyknit">Flyknit</option>
+              <option value="Mesh/Leather">Mesh/Leather</option>
+              <option value="Suede/Leather">Suede/Leather</option>
+              <option value="Canvas/Suede">Canvas/Suede</option>
+              <option value="Textile/Leather">Textile/Leather</option>
+              <option value="Leather/Suede">Leather/Suede</option>
+              <option value="Synthetic/Mesh">Synthetic/Mesh</option>
+              <option value="Canvas/Leather">Canvas/Leather</option>
+              <option value="Nylon/Suede">Nylon/Suede</option>
+              <option value="Flexweave/Knit">Flexweave/Knit</option>
+              <option value="Suede/Nylon">Suede/Nylon</option>
+              <option value="Primeknit/Synthetic">Primeknit/Synthetic</option>
+              <option value="Synthetic/Leather">Synthetic/Leather</option>
+              <option value="Leather/Mesh">Leather/Mesh</option>
+              <option value="Knit/Synthetic">Knit/Synthetic</option>
+              <option value="Synthetic/Textile">Synthetic/Textile</option>
+              <option value="Textile">Textile</option>
+              <option value="Flexweave/Cushioning">Flexweave/Cushioning</option>
+              <option value="Flexweave/Synthetic">Flexweave/Synthetic</option>
+              <option value="Mesh/Suede">Mesh/Suede</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 提交按钮 -->
+      <div class="mt-3 submit-bt">
+        <button type="submit" class="btn btn-primary">Predict</button>
+      </div>
+    </form>
+
+    <footer>
+      <h6 class="author">William Zhan 2024©</h6>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
